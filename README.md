@@ -97,7 +97,7 @@ npx playwright test e2e-tests/tests --headed
 - **API Automation**: 20 API endpoints with multiple assertions
 - **Unit Testing**: 3 utility functions with 15+ test cases
 
-![Screenshot Coverage Report](Screenshot_of_Coverage_Report.png)
+![Screenshot Coverage Report](Screenshot/Screenshot_of_Coverage_Report.png)
 
 **Coverage Summary:**
 - **Statements**: 100%
@@ -136,22 +136,22 @@ npx playwright test e2e-tests/tests --headed
 ## Test Reports
 
 ### UI Testing Report
-![Playwright Test Report](Scrrenshot_of_Ui_Testing_Report.png)
+![Playwright Test Report](Screenshot/Scrrenshot_of_Ui_Testing_Report.png)
 *Interactive HTML report available at: `playwright-report/index.html`*
 
 ### API Testing Reports
 
 #### Newman Test Runner Dashboard
-![Newman Dashboard](Screenshot_of_api_dashboard_Neman.png)
+![Newman Dashboard](Screenshot/Screenshot_of_api_dashboard_Neman.png)
 
 #### Detailed API Test Results
-![API Test Report](Screenshot_of_api_testing_report.png)
+![API Test Report](Screenshot/Screenshot_of_api_testing_report.png)
 
 ### E2E Test Complete Purchase Flow
-![Complete Purchase Flow Test Report](Screenshot_of_EndtoEnd_report.png)
+![Complete Purchase Flow Test Report](Screenshot/Screenshot_of_EndtoEnd_report.png)
 
 ### Detailed Test Execution
-![Detailed Test Execution](Compleatepurchaseflostandrartuser_e2e_report.png)
+![Detailed Test Execution](Screenshot/Compleatepurchaseflostandrartuser_e2e_report.png)
 
 ### Other Reports
 - **UI Tests**: `playwright-report/index.html`
