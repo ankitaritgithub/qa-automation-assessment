@@ -37,8 +37,8 @@
 ### Checkout Information
 ```json
 {
-  "firstName": "John",
-  "lastName": "Doe",
+  "firstName": "Ankita",
+  "lastName": "Singh",
   "postalCode": "12345"
 }
 ```
