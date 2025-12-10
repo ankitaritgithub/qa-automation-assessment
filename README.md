@@ -4,13 +4,14 @@ Comprehensive QA automation test suite covering manual testing, UI automation, A
 
 ## **Assessment (Attached)**
 
-- **File:** `QA Automation Engineer - Assessment.pdf` (located at the repository root)
+- **File:** `QA Automation Engineer - Assessment.pdf`
 - **Summary:** The attached assessment contains the full question set and acceptance criteria you were assigned. It focuses on implementing and validating a comprehensive QA automation solution covering:
   - UI automation (Playwright) 
   - API automation (Postman/Newman) 
   - Unit testing (Jest) 
   - End-to-end scenarios and test reporting
 - **What to do next:** Open the attached PDF to read the full task descriptions and acceptance criteria. Use the existing test structure in this repo to implement the required tests, then run and attach the generated reports.
+
 
 ## 📁 Project Structure
 
