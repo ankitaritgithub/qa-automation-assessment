@@ -1,0 +1,32 @@
+{
+    "version": "1.0.0",
+    "license": "ISC",
+    "keywords": [
+        "playwright",
+        "api-testing",
+        "automation",
+        "qa"
+    ],
+    "scripts": {
+        "test:report": "npx playwright show-report",
+        "playwright:install": "npx playwright install",
+        "test:unit": "jest unit-tests/tests",
+        "test:e2e:ui": "npx playwright test e2e-tests/tests --ui",
+        "test:e2e": "npx playwright test e2e-tests/tests",
+        "test:e2e:debug": "PWDEBUG=1 npx playwright test e2e-tests/tests",
+        "test:e2e:report": "npx playwright show-report",
+        "test:coverage": "jest --coverage --config=jest.config.js",
+        "test": "npm run test:unit && npm run test:ui && npm run test:api",
+        "test:api": "npx newman run \"api-tests/collections/JSONPlaceholder_API_Tests.postman_collection.json\" --reporters cli,htmlextra --reporter-htmlextra-export \"api-tests/reports/api-test-report.html\"",
+        "test:ui": "npx playwright test --config=ui-tests/playwright.config.js"
+    },
+    "name": "qa-automation-assessment",
+    "description": "Comprehensive QA automation test suite",
+    "author": "Ankita Singh",
+    "devDependencies": {
+        "newman": "^6.0.0",
+        "newman-reporter-htmlextra": "^1.23.1",
+        "jest": "^29.7.0",
+        "@playwright/test": "^1.42.1"
+    }
+}

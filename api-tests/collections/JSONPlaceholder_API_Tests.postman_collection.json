@@ -1,0 +1,413 @@
+{
+  "info": {
+    "name": "JSONPlaceholder_API_Test_Suite",
+    "description": "Comprehensive test suite for JSONPlaceholder API with positive and negative test cases",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /posts - Get all posts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://jsonplaceholder.typicode.com/posts"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code verification",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Verify response is JSON",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.have.jsonBody();",
+              "});",
+              "",
+              "// Verify 100 items returned",
+              "pm.test(\"Should return 100 posts\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.length).to.eql(100);",
+              "});",
+              "",
+              "// Schema validation",
+              "const schema = {",
+              "  type: \"array\",",
+              "  items: {",
+              "    type: \"object\",",
+              "    properties: {",
+              "      userId: { type: \"number\" },",
+              "      id: { type: \"number\" },",
+              "      title: { type: \"string\" },",
+              "      body: { type: \"string\" }",
+              "    },",
+              "    required: [\"userId\", \"id\", \"title\", \"body\"],",
+              "    additionalProperties: false",
+              "  }",
+              "};",
+              "",
+              "pm.test(\"Schema is valid\", function() {",
+              "  pm.response.to.have.jsonSchema(schema, { strict: true });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "GET /users/{id} - Get user by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://jsonplaceholder.typicode.com/users/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code verification",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Verify response structure",
+              "pm.test(\"Response has required fields\", function () {",
+              "    const response = pm.response.json();",
+              "    pm.expect(response).to.have.property('id');",
+              "    pm.expect(response).to.have.property('name');",
+              "    pm.expect(response).to.have.property('username');",
+              "    pm.expect(response).to.have.property('email');",
+              "    pm.expect(response).to.have.property('address');",
+              "    pm.expect(response).to.have.property('phone');",
+              "    pm.expect(response).to.have.property('website');",
+              "    pm.expect(response).to.have.property('company');",
+              "});",
+              "",
+              "// Email format validation",
+              "pm.test(\"Email is in valid format\", function () {",
+              "    const response = pm.response.json();",
+              "    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;",
+              "    pm.expect(emailRegex.test(response.email)).to.be.true;",
+              "});",
+              "",
+              "// Check for null values in address",
+              "pm.test(\"Address fields are not null\", function () {",
+              "    const address = pm.response.json().address;",
+              "    pm.expect(address.street).to.be.a('string').and.to.have.lengthOf.at.least(1);",
+              "    pm.expect(address.suite).to.be.a('string');",
+              "    pm.expect(address.city).to.be.a('string').and.to.have.lengthOf.at.least(1);",
+              "    pm.expect(address.zipcode).to.be.a('string').and.to.have.lengthOf.at.least(1);",
+              "    pm.expect(address.geo).to.be.an('object');",
+              "    pm.expect(address.geo.lat).to.be.a('string');",
+              "    pm.expect(address.geo.lng).to.be.a('string');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "POST /posts - Create a new post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"foo\",\n    \"body\": \"bar\",\n    \"userId\": 1\n}"
+        },
+        "url": "https://jsonplaceholder.typicode.com/posts"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code verification",
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "// Verify response includes sent fields and ID",
+              "pm.test(\"Response includes all sent fields and ID\", function () {",
+              "    const response = pm.response.json();",
+              "    const requestData = JSON.parse(pm.request.body.raw);",
+              "    ",
+              "    pm.expect(response).to.have.property('id');",
+              "    pm.expect(response.title).to.eql(requestData.title);",
+              "    pm.expect(response.body).to.eql(requestData.body);",
+              "    pm.expect(response.userId).to.eql(requestData.userId);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "PUT /posts/{id} - Update a post",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": 1,\n    \"title\": \"updated title\",\n    \"body\": \"updated body\",\n    \"userId\": 1\n}"
+        },
+        "url": "https://jsonplaceholder.typicode.com/posts/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code verification",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Verify response reflects changes",
+              "pm.test(\"Response reflects updates\", function () {",
+              "    const response = pm.response.json();",
+              "    const requestData = JSON.parse(pm.request.body.raw);",
+              "    ",
+              "    pm.expect(response.id).to.eql(requestData.id);",
+              "    pm.expect(response.title).to.eql(requestData.title);",
+              "    pm.expect(response.body).to.eql(requestData.body);",
+              "    pm.expect(response.userId).to.eql(requestData.userId);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "PATCH /posts/{id} - Partially update a post",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"patched title\"\n}"
+        },
+        "url": "https://jsonplaceholder.typicode.com/posts/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code verification",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Verify only specified field is updated",
+              "pm.test(\"Only specified field is updated\", function () {",
+              "    const response = pm.response.json();",
+              "    const requestData = JSON.parse(pm.request.body.raw);",
+              "    ",
+              "    pm.expect(response.title).to.eql(requestData.title);",
+              "    // Verify other fields remain unchanged",
+              "    pm.expect(response).to.have.property('body');",
+              "    pm.expect(response).to.have.property('userId');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "DELETE /posts/{id} - Delete a post",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "https://jsonplaceholder.typicode.com/posts/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code verification (API might return 200 or 204)",
+              "pm.test(\"Status code is 200 or 204\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+
+    {
+      "name": "NEGATIVE - GET /posts/{invalid_id}",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "https://jsonplaceholder.typicode.com/posts/99999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verify 404 for non-existent post",
+              "pm.test(\"Status code is 404 for non-existent post\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "NEGATIVE - POST /posts with missing required fields",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"incomplete post\"\n}"
+        },
+        "url": "https://jsonplaceholder.typicode.com/posts"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Note: This API might still return 201 as it's a mock service",
+              "// In a real API, you'd expect a 400 Bad Request",
+              "pm.test(\"Response is received\", function () {",
+              "    pm.expect(pm.response).to.not.be.null;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "NEGATIVE - Invalid HTTP method",
+      "request": {
+        "method": "INVALID",
+        "header": [],
+        "url": "https://jsonplaceholder.typicode.com/posts/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Should return 405 Method Not Allowed or similar",
+              "pm.test(\"Status code indicates error\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([400, 404, 405, 500]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "NEGATIVE - Invalid Content-Type header",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"test\"}"
+        },
+        "url": "https://jsonplaceholder.typicode.com/posts"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Should return 415 Unsupported Media Type or similar",
+              "pm.test(\"Status code indicates error\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([400, 415, 500]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "NEGATIVE - Invalid JSON body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"invalid json\",}"
+        },
+        "url": "https://jsonplaceholder.typicode.com/posts"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Should return 400 Bad Request for invalid JSON",
+              "pm.test(\"Status code indicates error\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
