@@ -148,7 +148,7 @@ npx playwright test e2e-tests/tests --headed
 ![API Test Report](Screenshot_of_api_testing_report.png)
 
 ### E2E Test - Complete Purchase Flow
-![Complete Purchase Flow Test Report](Screenshot_of_End-to-End_report.png)
+![Complete Purchase Flow Test Report](Screenshot_of_ End-to-End_report.png)
 
 ### Detailed Test Execution
 ![Detailed Test Execution](Compleatepurchaseflostandrartuser_e2e_report.png)
