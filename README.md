@@ -158,14 +158,14 @@ npx playwright test e2e-tests/tests --headed
 ![API Test Report](screenshots/Screenshot_of_api_testing_report.png)
 
 ### E2E Test Complete Purchase Flow
-![Complete Purchase Flow Test Report](screenshots/Screenshot_of_EndtoEnd_report.png)
+![Complete Purchase Flow Test Report](screenshots/Screenshot.png)
 
 ### Detailed Test Execution
 ![Detailed Test Execution](screenshots/Compleatepurchaseflostandrartuser_e2e_report.png)
 
 ### Other Reports
 - **UI Tests**: `playwright-report/index.html`
-- **API Tests**: `api-tests/reports/api-test-report.html`
+- **API Tests**: `api-tests/reports/api-test-report.html
 - **Unit Tests**: `coverage/lcov-report/index.html` + coverage report
 
 ##  Author
