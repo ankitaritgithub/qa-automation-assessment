@@ -103,7 +103,7 @@ npx playwright test e2e-tests/tests --headed
 
 ## Test Coverage
 
-- **Manual Testing**: 12 test cases
+- **Manual Testing**: 19 test cases
 - **UI Automation**: 6 test cases
 - **API Automation**: 9 API endpoints with multiple assertions
 - **Unit Testing**: 3 utility functions with 15+ test cases
