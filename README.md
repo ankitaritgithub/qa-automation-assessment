@@ -2,6 +2,16 @@
 
 Comprehensive QA automation test suite covering manual testing, UI automation, API automation, unit testing, and E2E testing.
 
+## **Assessment (Attached)**
+
+- **File:** `QA Automation Engineer - Assessment.pdf` (located at the repository root)
+- **Summary:** The attached assessment contains the full question set and acceptance criteria you were assigned. It focuses on implementing and validating a comprehensive QA automation solution covering:
+  - UI automation (Playwright) 
+  - API automation (Postman/Newman) 
+  - Unit testing (Jest) 
+  - End-to-end scenarios and test reporting
+- **What to do next:** Open the attached PDF to read the full task descriptions and acceptance criteria. Use the existing test structure in this repo to implement the required tests, then run and attach the generated reports.
+
 ## 📁 Project Structure
 
 ```
@@ -97,7 +107,7 @@ npx playwright test e2e-tests/tests --headed
 - **API Automation**: 20 API endpoints with multiple assertions
 - **Unit Testing**: 3 utility functions with 15+ test cases
 
-![Screenshot Coverage Report](Screenshot/Screenshot_of_Coverage_Report.png)
+![Screenshot Coverage Report](screenshots/Screenshot_of_Coverage_Report.png)
 
 **Coverage Summary:**
 - **Statements**: 100%
@@ -136,22 +146,22 @@ npx playwright test e2e-tests/tests --headed
 ## Test Reports
 
 ### UI Testing Report
-![Playwright Test Report](Screenshot/Scrrenshot_of_Ui_Testing_Report.png)
+![Playwright Test Report](screenshots/Scrrenshot_of_Ui_Testing_Report.png)
 *Interactive HTML report available at: `playwright-report/index.html`*
 
 ### API Testing Reports
 
 #### Newman Test Runner Dashboard
-![Newman Dashboard](Screenshot/Screenshot_of_api_dashboard_Neman.png)
+![Newman Dashboard](screenshots/Screenshot_of_api_dashboard_Neman.png)
 
 #### Detailed API Test Results
-![API Test Report](Screenshot/Screenshot_of_api_testing_report.png)
+![API Test Report](screenshots/Screenshot_of_api_testing_report.png)
 
 ### E2E Test Complete Purchase Flow
-![Complete Purchase Flow Test Report](Screenshot/Screenshot_of_EndtoEnd_report.png)
+![Complete Purchase Flow Test Report](screenshots/Screenshot_of_EndtoEnd_report.png)
 
 ### Detailed Test Execution
-![Detailed Test Execution](Screenshot/Compleatepurchaseflostandrartuser_e2e_report.png)
+![Detailed Test Execution](screenshots/Compleatepurchaseflostandrartuser_e2e_report.png)
 
 ### Other Reports
 - **UI Tests**: `playwright-report/index.html`
